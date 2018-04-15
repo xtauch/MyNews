@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default NavigationView Header height -->
+    <dimen name="nav_header_height">176dp</dimen>
+
+    <!-- Logo dimensions and adjustments -->
+    <dimen name="size_image_height">100dp</dimen>
+    <dimen name="size_image_width">@dimen/size_image_height</dimen>
+    <dimen name="margin_end">2dp</dimen>
+    <dimen name="margin_top">5dp</dimen>
+</resources>
