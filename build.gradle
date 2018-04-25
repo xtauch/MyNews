@@ -4,11 +4,11 @@ buildscript {
     
     repositories {
         jcenter()
-        maven { url "https://maven.google.com" }  // new as of Google I/O 2017
+        google()
     }
+
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        
+        classpath 'com.android.tools.build:gradle:3.1.1'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -20,6 +20,14 @@ allprojects {
         google()
         jcenter()
     }
+}
+
+ext {
+    supportLibVersion = "27.1.1"
+    retrofitVersion = "2.4.0"
+    glideVersion = "4.7.1"
+    butterknifeVersion = "8.8.1"
+    // variable that can be referenced to keep support libs consistent
 }
 
 task clean(type: Delete) {

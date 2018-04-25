@@ -4,11 +4,6 @@ package com.example.youpiman.mynews.Utils;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-
-
-
-
-
 public class ItemClickSupport {
     private final RecyclerView mRecyclerView;
     private OnItemClickListener mOnItemClickListener;

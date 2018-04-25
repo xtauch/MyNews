@@ -6,17 +6,26 @@
     <string name="most_popular">MOST POPULAR</string>
     <string name="top_stories">TOP STORIES</string>
 
-    <string name="Hello">Hello</string>
+    <string name="from_date">"From date"</string>
+    <string name="to_date">"To date"</string>
+
+    <string name="empty">"No results found"</string>
+    <string name="ok">"OK"</string>
+
     <string name="profile_page">Profile page</string>
     <string name="settings_page">Settings page</string>
     <string name="news_page">News page</string>
 
+    <!-- Sections -->
+    <string name="automobiles">"Automobiles"</string>
+    <string name="movies">"Movies"</string>
+    <string name="science">"Science"</string>
+    <string name="world">"World"</string>
+    <string name="technology">"Technology"</string>
+
     <!-- Used in NavigationDrawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

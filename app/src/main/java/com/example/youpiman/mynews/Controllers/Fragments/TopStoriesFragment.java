@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.youpiman.mynews.Adapters.TopStoriesAdapter;
 import com.example.youpiman.mynews.Controllers.Activities.WebActivity;
 import com.example.youpiman.mynews.Models.TopStories.TopStories;
@@ -85,11 +86,11 @@ public class TopStoriesFragment extends Fragment{
         // 3.1 - Reset list
         this.mTopStoriesResults = new ArrayList<>();
         // 3.2 - Create mTopStoriesAdapter passing the top stories
-        this.mTopStoriesAdapter = new TopStoriesAdapter(this.mTopStoriesResults);
+        this.mTopStoriesAdapter = new TopStoriesAdapter(this.mTopStoriesResults, Glide.with(this));
         // 3.3 - Attach the mTopStoriesAdapter to the recyclerview to populate items
         this.mRecyclerView.setAdapter(this.mTopStoriesAdapter);
         // 3.4 - Set layout manager to position the items
-        this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
 
@@ -100,8 +101,9 @@ public class TopStoriesFragment extends Fragment{
 
         // Execute our Stream
     private void executeHttpTopStoriesRequest(){
-        // Execute the stream subscribing to Observable defined inside GithubStream
+        // Execute the stream subscribing to Observable defined inside NYTStream
         this.mDisposable = NYTStreams.streamFetchTopStories("home").subscribeWith(new DisposableObserver<TopStories>(){
+
             @Override
             public void onNext(TopStories topStories) {
                 Log.e("TopStoriesF - onNext", "On Next TopStoriesFragment");

@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <!-- A child of the main activity -->
-        <activity android:name=".Controllers.Activities.WebActivity"></activity>
+        <activity android:name=".Controllers.Activities.WebActivity" />
+        <activity android:name=".Controllers.Activities.NotifActivity"></activity>
+        <activity android:name=".Controllers.Activities.ResultActivity" />
+        <activity android:name=".Controllers.Activities.SearchActivity" />
     </application>
 
 </manifest>

@@ -6,14 +6,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestManager;
-import com.example.youpiman.mynews.Models.TopStories.TopStoriesResult;
+import com.example.youpiman.mynews.Models.MostPopular.MostPopularResult;
 import com.example.youpiman.mynews.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class TopStoriesViewHolder extends RecyclerView.ViewHolder{
+
+public class MostPopularViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.fragment_page_item_title)
     TextView mTitle;
@@ -25,22 +26,18 @@ public class TopStoriesViewHolder extends RecyclerView.ViewHolder{
     TextView mDate;
 
 
-    public TopStoriesViewHolder(View itemView) {
+    public MostPopularViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
 
-    public void updateWithTopStories(TopStoriesResult topStoriesResult, RequestManager glide){
-        this.mTitle.setText(topStoriesResult.getTitle());
-        this.mDate.setText(topStoriesResult.getCreatedDate().substring(0,10));
-        if(!topStoriesResult.getSubsection().isEmpty()){
-            this.mSection.setText(topStoriesResult.getSection()+" > "+topStoriesResult.getSubsection());
-        } else {
-            this.mSection.setText(topStoriesResult.getSection());
-        }
-        if(topStoriesResult.getMultimedia().size() != 0){
-            glide.load(topStoriesResult.getMultimedia().get(0).getUrl())
+    public void updateWithMostPopular(MostPopularResult mostPopularResult, RequestManager glide) {
+        this.mTitle.setText(mostPopularResult.getTitle());
+        this.mDate.setText(mostPopularResult.getPublishedDate().substring(0, 10));
+        this.mSection.setText(mostPopularResult.getSection());
+        if (mostPopularResult.getMultimedia().size() != 0) {
+            glide.load(mostPopularResult.getMultimedia().get(0).getMediaMetadata().get(0).getUrl())
                     .into(mImageView);
         } else {
             mImageView.setImageResource(R.drawable.ic_openclassrooms);

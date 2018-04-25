@@ -1,5 +1,7 @@
 package com.example.youpiman.mynews.Controllers.Activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -77,8 +79,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_activity_main_search :
+                startActivity(new Intent(this, SearchActivity.class));
                 break;
             case R.id.menu_activity_main_settings :
+                startActivity(new Intent(this, NotifActivity.class));
                 break;
             default:
                break;
@@ -176,8 +180,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Get ViewPager from layout
         ViewPager pager = findViewById(R.id.activity_main_viewpager);
         //Set Adapter PageAdapter and glue it together
-        pager.setAdapter(new PageAdapter(getSupportFragmentManager()));
-
+        pager.setAdapter(new PageAdapter(getSupportFragmentManager(), this));
         //  Get TabLayout from layout
         TabLayout tabs= findViewById(R.id.activity_main_tabs);
         //  Glue TabLayout and ViewPager together

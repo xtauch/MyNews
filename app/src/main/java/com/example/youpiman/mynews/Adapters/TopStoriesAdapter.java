@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.RequestManager;
 import com.example.youpiman.mynews.Models.TopStories.TopStoriesResult;
 import com.example.youpiman.mynews.R;
 import com.example.youpiman.mynews.Views.TopStoriesViewHolder;
@@ -14,18 +15,22 @@ import java.util.List;
 
 
 
-public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder> {
+    public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesViewHolder> {
 
-// FOR DATA
-private List<TopStoriesResult> mTopStoriesResults;
+    // FOR DATA
+    private List<TopStoriesResult> mTopStoriesResults;
 
-// CONSTRUCTOR
-public TopStoriesAdapter(List<TopStoriesResult> topStoriesResults) {
+    private RequestManager glide;
+
+
+    // CONSTRUCTOR
+    public TopStoriesAdapter(List<TopStoriesResult> topStoriesResults, RequestManager glide) {
         this.mTopStoriesResults = topStoriesResults;
+        this.glide = glide;
         }
 
-@Override
-public TopStoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override
+    public TopStoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // CREATE VIEW HOLDER AND INFLATING ITS XML LAYOUT
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
@@ -34,15 +39,15 @@ public TopStoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new TopStoriesViewHolder(view);
         }
 
-// UPDATE VIEW HOLDER WITH A TOP STORY
-@Override
-public void onBindViewHolder(TopStoriesViewHolder viewHolder, int position) {
-        viewHolder.updateWithTopStories(this.mTopStoriesResults.get(position));
-        }
+        // UPDATE VIEW HOLDER WITH A TOP STORY
+        @Override
+        public void onBindViewHolder(TopStoriesViewHolder viewHolder, int position) {
+                viewHolder.updateWithTopStories(this.mTopStoriesResults.get(position), this.glide);
+                }
 
-// RETURN THE TOTAL COUNT OF ITEMS IN THE LIST
-@Override
-public int getItemCount() {
-        return this.mTopStoriesResults.size();
+        // RETURN THE TOTAL COUNT OF ITEMS IN THE LIST
+        @Override
+        public int getItemCount() {
+                return this.mTopStoriesResults.size();
         }
-        }
+}
