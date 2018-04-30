@@ -129,11 +129,9 @@ public class TopStoriesFragment extends Fragment{
     }
 
 
-
     // ------------------
     //  UPDATE UI
     // ------------------
-
 
     // 3 - Update UI showing only name of users
     private void updateTopStoriesUI(List<TopStoriesResult> topStoriesResults){

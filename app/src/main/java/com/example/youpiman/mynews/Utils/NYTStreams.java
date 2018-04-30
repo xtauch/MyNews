@@ -14,6 +14,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class NYTStreams {
+
     public static Observable<TopStories> streamFetchTopStories(String section){
         NYTService nytService = NYTService.retrofit.create(NYTService.class);
         return nytService.getTopStories(section)

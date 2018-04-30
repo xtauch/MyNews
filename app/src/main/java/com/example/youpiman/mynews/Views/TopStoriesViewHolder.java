@@ -1,5 +1,6 @@
 package com.example.youpiman.mynews.Views;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,6 +32,7 @@ public class TopStoriesViewHolder extends RecyclerView.ViewHolder{
     }
 
 
+    @SuppressLint("SetTextI18n")
     public void updateWithTopStories(TopStoriesResult topStoriesResult, RequestManager glide){
         this.mTitle.setText(topStoriesResult.getTitle());
         this.mDate.setText(topStoriesResult.getCreatedDate().substring(0,10));
