@@ -1,4 +1,5 @@
 package com.example.youpiman.mynews.Controllers.Activities;
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -33,11 +34,13 @@ public class SearchActivity extends AppCompatActivity {
     // Query Search
     @BindView(R.id.form_search_query)
     EditText searchQuery;
+
     // Period of time
     @BindView(R.id.form_search_fromdate)
     EditText searchFromDate;
     @BindView(R.id.form_search_todate)
     EditText searchToDate;
+
     // Checkboxes
     @BindView(R.id.form_search_warning_checkboxes)
     TextView mCheckboxesTextview;
@@ -53,6 +56,7 @@ public class SearchActivity extends AppCompatActivity {
     CheckBox sportsCheckBox;
     @BindView(R.id.form_search_right_checkBox_travel)
     CheckBox travelCheckBox;
+
     // Search button
     @BindView(R.id.form_search_button)
     Button searchButton;
@@ -86,7 +90,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (TextUtils.isEmpty(searchQuery.getText())) {
                     searchQuery.setError("This field is required !");
-                } else if (checkingCheckboxes() == false){
+                } else if (!checkingCheckboxes()){
                     mCheckboxesTextview.setVisibility(View.VISIBLE);
                 } else {
                     Intent intent = new Intent(SearchActivity.this, ResultActivity.class);
@@ -138,6 +142,7 @@ public class SearchActivity extends AppCompatActivity {
                 DatePickerDialog picker;
 
                 picker = new DatePickerDialog(SearchActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         String sMonth;
