@@ -174,9 +174,8 @@ public class SearchActivity extends AppCompatActivity {
         Date curDate = new Date();
 
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-        String dateToStr = format.format(curDate);
 
-        return dateToStr;
+        return format.format(curDate);
     }
 
 

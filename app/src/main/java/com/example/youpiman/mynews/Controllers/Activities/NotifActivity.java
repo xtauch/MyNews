@@ -33,45 +33,36 @@ import butterknife.ButterKnife;
 
 public class NotifActivity extends AppCompatActivity {
 
-    @BindView(R.id.activity_notif_toolbar)
-    Toolbar mToolbar;
+    @BindView(R.id.activity_notif_toolbar) Toolbar mToolbar;
 
     // Query Search
-    @BindView(R.id.form_search_query)
-    EditText searchQuery;
+    @BindView(R.id.form_search_query) EditText searchQuery;
+
     // Dates
-    @BindView(R.id.form_search_dates)
-    LinearLayout datesLayout;
+    @BindView(R.id.form_search_dates) LinearLayout datesLayout;
+
     // Checkboxes
-    @BindView(R.id.form_search_warning_checkboxes)
-    TextView mCheckboxesTextview;
-    @BindView(R.id.form_search_left_checkBox_arts)
-    CheckBox artsCheckBox;
-    @BindView(R.id.form_search_left_checkBox_business)
-    CheckBox businessCheckBox;
-    @BindView(R.id.form_search_left_checkBox_entrepreneurs)
-    CheckBox entrepreneursCheckBox;
-    @BindView(R.id.form_search_right_checkBox_politics)
-    CheckBox politicsCheckBox;
-    @BindView(R.id.form_search_right_checkBox_sports)
-    CheckBox sportsCheckBox;
-    @BindView(R.id.form_search_right_checkBox_travel)
-    CheckBox travelCheckBox;
+    @BindView(R.id.form_search_warning_checkboxes) TextView mCheckboxesTextview;
+    @BindView(R.id.form_search_left_checkBox_arts) CheckBox artsCheckBox;
+    @BindView(R.id.form_search_left_checkBox_business) CheckBox businessCheckBox;
+    @BindView(R.id.form_search_left_checkBox_entrepreneurs) CheckBox entrepreneursCheckBox;
+    @BindView(R.id.form_search_right_checkBox_politics) CheckBox politicsCheckBox;
+    @BindView(R.id.form_search_right_checkBox_sports) CheckBox sportsCheckBox;
+    @BindView(R.id.form_search_right_checkBox_travel) CheckBox travelCheckBox;
+
     // Search button
-    @BindView(R.id.form_search_button)
-    Button searchButton;
+    @BindView(R.id.form_search_button) Button searchButton;
+
     // Notifications switch
-    @BindView(R.id.form_search_notif)
-    LinearLayout mNotifLayout;
-    @BindView(R.id.form_search_switch_notif)
-    Switch notifSwitch;
+    @BindView(R.id.form_search_notif) LinearLayout mNotifLayout;
+    @BindView(R.id.form_search_switch_notif) Switch notifSwitch;
 
     // For Notification
     public static final int UNIQUE_ID = 100;
 
     // For Preferences
     private SharedPreferences mPreferences;
-    public static final String USER_PREFERENCES = "USER_PREFERENCES";
+    public static final String USER_PREFERENCES = "USER_PREF";
 
     // For Data
     public static final String SEARCH_PREF = "SEARCH_PREF";

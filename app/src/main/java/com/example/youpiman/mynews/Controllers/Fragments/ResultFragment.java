@@ -116,16 +116,16 @@ public class ResultFragment extends Fragment {
 
     // Execute our Stream
     private void executeHttpResultRequest(){
-        String QUERY = getArguments().getString("query");
-        String FROM_DATE;
-        String TO_DATE;
-        String CHECKBOXES;
-        FROM_DATE = getArguments().getString("from_date");
-        TO_DATE = getArguments().getString("to_date");
-        CHECKBOXES = getArguments().getString("checkboxes");
-        Log.e("httpResultRequest", QUERY +" "+FROM_DATE+" "+TO_DATE+" "+CHECKBOXES);
+        String query = getArguments().getString("query");
+        String from_date;
+        String to_date;
+        String checkboxes;
+        from_date = getArguments().getString("from_date");
+        to_date = getArguments().getString("to_date");
+        checkboxes = getArguments().getString("checkboxes");
+        Log.e("httpResultRequest", query +" "+from_date+" "+to_date+" "+checkboxes);
         // Execute the stream subscribing to Observable defined inside NYTStream
-        this.mDisposable = NYTStreams.streamFetchArticleSearch(QUERY, FROM_DATE, TO_DATE, CHECKBOXES, NYTService.API_KEY).subscribeWith(new DisposableObserver<ArticleSearch>(){
+        this.mDisposable = NYTStreams.streamFetchArticleSearch(query, from_date, to_date, checkboxes, NYTService.API_KEY).subscribeWith(new DisposableObserver<ArticleSearch>(){
 
             @Override
             public void onNext(ArticleSearch articleSearch) {
