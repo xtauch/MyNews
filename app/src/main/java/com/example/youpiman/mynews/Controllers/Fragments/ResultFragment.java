@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.youpiman.mynews.Adapters.ResultAdapter;
@@ -25,6 +27,8 @@ import com.example.youpiman.mynews.Utils.NYTStreams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,12 +45,16 @@ public class ResultFragment extends Fragment {
     @BindView(R.id.fragment_result_swipe_container)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
+
     // FOR DATA
     private Disposable mDisposable;
     private List<Doc> mDocs = new ArrayList<>();
     private ResultAdapter mResultAdapter;
 
-
+    String query;
+    String from_date;
+    String to_date;
+    String checkboxes;
 
     public static ResultFragment newInstance() {
         return (new ResultFragment());
@@ -67,8 +75,8 @@ public class ResultFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         this.disposeWhenDestroy();
+        super.onDestroy();
     }
 
     // -----------------
@@ -116,10 +124,7 @@ public class ResultFragment extends Fragment {
 
     // Execute our Stream
     private void executeHttpResultRequest(){
-        String query = getArguments().getString("query");
-        String from_date;
-        String to_date;
-        String checkboxes;
+        query = getArguments().getString("query");
         from_date = getArguments().getString("from_date");
         to_date = getArguments().getString("to_date");
         checkboxes = getArguments().getString("checkboxes");
@@ -137,6 +142,7 @@ public class ResultFragment extends Fragment {
             @Override
             public void onError(Throwable e) {
                 Log.e("ArtSearch - onError", Log.getStackTraceString(e));
+                Toast.makeText(getContext(),"Une erreur est survenue ", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -160,17 +166,22 @@ public class ResultFragment extends Fragment {
         mSwipeRefreshLayout.setRefreshing(false);
         mDocs.clear();
         if (docs.isEmpty()){
-            showAlertDialog();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("There's no result for this search \n You will be redirect automatically in 5 seconds").show();
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    endSearchResult();
+                }
+            }, 0);
+
         } else {
             mDocs.addAll(docs);
             mResultAdapter.notifyDataSetChanged();
         }
     }
 
-    public void showAlertDialog(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage("There's no result for this search \n You will be redirect automatically in 5 seconds");
-        AlertDialog dialog = builder.create();
+    public void endSearchResult(){
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {

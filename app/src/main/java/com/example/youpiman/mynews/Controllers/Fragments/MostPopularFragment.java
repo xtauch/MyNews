@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.youpiman.mynews.Adapters.MostPopularAdapter;
@@ -29,14 +32,13 @@ import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class MostPopularFragment extends Fragment {
 
     // FOR DESIGN
-    @BindView(R.id.fragment_most_popular_recycler_view)
-    RecyclerView mRecyclerView;
+    @BindView(R.id.loadingPanel)ProgressBar mProgressBar;
+    @BindView(R.id.fragment_most_popular_recycler_view) RecyclerView mRecyclerView;
+    @BindView(R.id.fragment_main_swipe_container) SwipeRefreshLayout swipeRefreshLayout;
 
 
     // FOR DATA
@@ -53,20 +55,21 @@ public class MostPopularFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View result = inflater.inflate(R.layout.fragment_most_popular, container, false);
+
         ButterKnife.bind(this, result);
         this.configureMostPopularRecyclerView();
         this.executeHttpMostPopularRequest();
         this.configureOnClickRecyclerView();
-        // Inflate the layout for this fragment
+        configureSwipeRefreshLayout();
         return result;
 
     }
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         Log.e("onDestroy", "onDestroy MostPopularFragment");
         this.disposeWhenDestroy();
+        super.onDestroy();
     }
 
     // -----------------
@@ -96,9 +99,20 @@ public class MostPopularFragment extends Fragment {
         this.mMostPopularAdapter = new MostPopularAdapter(this.mMostPopularResults, Glide.with(this));
         this.mRecyclerView.setAdapter(this.mMostPopularAdapter);
         this.mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
     }
 
 
+    // Configure the SwipeRefreshLayout
+    public void configureSwipeRefreshLayout(){
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                executeHttpMostPopularRequest();
+            }
+        });
+    }
     // -----------------
     // HTTP (RxJAVA)
     // -----------------
@@ -110,12 +124,14 @@ public class MostPopularFragment extends Fragment {
             @Override
             public void onNext(MostPopular mostPopular) {
                 // Update RecyclerView after getting results from NYT API
+                mProgressBar.setVisibility(View.GONE);
                 updateMostPopularUI(mostPopular.getMostPopularResults());
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.e("MostPopular onError", Log.getStackTraceString(e));
+                Toast.makeText(getContext(),"Une erreur est survenue ", Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -135,6 +151,7 @@ public class MostPopularFragment extends Fragment {
     // -----------------
 
     private void updateMostPopularUI(List<MostPopularResult> mostPopularResults){
+        swipeRefreshLayout.setRefreshing(false);
         mMostPopularResults.clear();
         mMostPopularResults.addAll(mostPopularResults);
         mMostPopularAdapter.notifyDataSetChanged();

@@ -19,10 +19,10 @@ public class ResultActivity extends AppCompatActivity {
     Toolbar mToolbar;
 
     // FOR DATA
-    private String QUERY;
-    private String FROM_DATE;
-    private String TO_DATE;
-    private String CHECKBOXES;
+    private String query;
+    private String from_date;
+    private String to_date;
+    private String checkboxes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +33,10 @@ public class ResultActivity extends AppCompatActivity {
         this.configureToolbar();
 
         // Get data from SearchActivity
-        QUERY = getIntent().getStringExtra("QUERY");
-        FROM_DATE = getIntent().getStringExtra("FROM_DATE");
-        TO_DATE = getIntent().getStringExtra("TO_DATE");
-        CHECKBOXES = getIntent().getStringExtra("CHECKBOXES");
+        query = getIntent().getStringExtra("QUERY");
+        from_date = getIntent().getStringExtra("FROM_DATE");
+        to_date = getIntent().getStringExtra("TO_DATE");
+        checkboxes = getIntent().getStringExtra("CHECKBOXES");
 
         sendData();
     }
@@ -48,17 +48,17 @@ public class ResultActivity extends AppCompatActivity {
     private void configureToolbar(){
         // Add back button
         setSupportActionBar(mToolbar);
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     private void sendData() {
         // Pack data in a bundle
         Bundle bundle = new Bundle();
-        bundle.putString("query", QUERY);
-        bundle.putString("from_date", FROM_DATE);
-        bundle.putString("to_date", TO_DATE);
-        bundle.putString("checkboxes", CHECKBOXES);
+        bundle.putString("query", query);
+        bundle.putString("from_date", from_date);
+        bundle.putString("to_date", to_date);
+        bundle.putString("checkboxes", checkboxes);
 
         // Pass over the bundle to our fragment
         Fragment resultFragment = new ResultFragment();

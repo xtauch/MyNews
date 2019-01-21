@@ -55,7 +55,7 @@ public class NotifActivity extends AppCompatActivity {
 
     // Notifications switch
     @BindView(R.id.form_search_notif) LinearLayout mNotifLayout;
-    @BindView(R.id.form_search_switch_notif) Switch notifSwitch;
+    @BindView(R.id.form_search_switch_notif) Switch mNotifSwitch;
 
     // For Notification
     public static final int UNIQUE_ID = 100;
@@ -76,6 +76,7 @@ public class NotifActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notif);
         ButterKnife.bind(this);
+
         // Set the UI
         mNotifLayout.setVisibility(View.VISIBLE);
         searchButton.setVisibility(View.GONE);
@@ -101,7 +102,7 @@ public class NotifActivity extends AppCompatActivity {
     // ---------------
 
     private void configureNotifications(){
-        notifSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mNotifSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
@@ -118,7 +119,7 @@ public class NotifActivity extends AppCompatActivity {
                         // repeat notification every day at 12am
                         Calendar calendar = Calendar.getInstance();
                         calendar.set(Calendar.HOUR_OF_DAY, 12);
-                        calendar.set(Calendar.MINUTE, 30);
+                        calendar.set(Calendar.MINUTE, 0);
                         calendar.set(Calendar.SECOND, 0);
                         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
                         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
@@ -137,8 +138,8 @@ public class NotifActivity extends AppCompatActivity {
         mPreferences.edit().putString(SEARCH_PREF, searchQuery.getText().toString()).apply();
         mPreferences.edit().putString(CHECKED_PREF, checkBoxString()).apply();
         mPreferences.edit().putStringSet(CHECKBOX_PREF, set).apply();
-        mPreferences.edit().putBoolean(SWITCH_PREF, notifSwitch.isChecked()).apply();
-        Log.i("switch is checked: ", ""+notifSwitch.isChecked());
+        mPreferences.edit().putBoolean(SWITCH_PREF, mNotifSwitch.isChecked()).apply();
+        Log.i("switch is checked: ", ""+ mNotifSwitch.isChecked());
     }
 
     private void loadingPreferences(){
@@ -178,7 +179,7 @@ public class NotifActivity extends AppCompatActivity {
         // Retrieve last switch position
         Boolean switchBoolean = mPreferences.getBoolean(SWITCH_PREF, false);
         Log.i("switchBoolean", ": "+switchBoolean);
-        notifSwitch.setChecked(switchBoolean);
+        mNotifSwitch.setChecked(switchBoolean);
     }
 
     // Create a piece or URI with checked checkboxes

@@ -13,14 +13,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <TextView
-        android:id="@+id/fragment_result_empty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:visibility="gone"
-        android:textStyle="bold"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="@string/empty"/>
 
 </android.support.v4.widget.SwipeRefreshLayout>

@@ -31,7 +31,7 @@ public class NYTStreams {
                 .timeout(10, TimeUnit.SECONDS);
     }
 
-    public Observable<TopStories> streamFetchBusinessTopStories(){
+    public static Observable<TopStories> streamFetchBusinessTopStories(){
         NYTService nytService = NYTService.retrofit.create(NYTService.class);
         return nytService.getTopStories("business")
                 .subscribeOn(Schedulers.io())

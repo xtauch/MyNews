@@ -56,7 +56,7 @@ public class NotificationReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setSmallIcon(R.mipmap.ic_launcher) // notification icon
                 .setContentTitle("My News Notification") // title for notification
-                .setContentText("It's time for you daily news checking ! ;)")// message for notification
+                .setContentText("It's time for you daily news checking !")// message for notification
                 .setAutoCancel(true); // clear notification after click
 
         mNotificationManager.notify(NotifActivity.UNIQUE_ID, mBuilder.build());

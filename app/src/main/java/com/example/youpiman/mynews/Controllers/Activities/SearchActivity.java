@@ -28,38 +28,26 @@ import butterknife.ButterKnife;
 
 public class SearchActivity extends AppCompatActivity {
 
-    @BindView(R.id.activity_search_toolbar)
-    Toolbar mToolbar;
+    @BindView(R.id.activity_search_toolbar) Toolbar mToolbar;
 
     // Query Search
-    @BindView(R.id.form_search_query)
-    EditText searchQuery;
+    @BindView(R.id.form_search_query) EditText searchQuery;
 
     // Period of time
-    @BindView(R.id.form_search_fromdate)
-    EditText searchFromDate;
-    @BindView(R.id.form_search_todate)
-    EditText searchToDate;
+    @BindView(R.id.form_search_fromdate) EditText searchFromDate;
+    @BindView(R.id.form_search_todate) EditText searchToDate;
 
     // Checkboxes
-    @BindView(R.id.form_search_warning_checkboxes)
-    TextView mCheckboxesTextview;
-    @BindView(R.id.form_search_left_checkBox_arts)
-    CheckBox artsCheckBox;
-    @BindView(R.id.form_search_left_checkBox_business)
-    CheckBox businessCheckBox;
-    @BindView(R.id.form_search_left_checkBox_entrepreneurs)
-    CheckBox entrepreneursCheckBox;
-    @BindView(R.id.form_search_right_checkBox_politics)
-    CheckBox politicsCheckBox;
-    @BindView(R.id.form_search_right_checkBox_sports)
-    CheckBox sportsCheckBox;
-    @BindView(R.id.form_search_right_checkBox_travel)
-    CheckBox travelCheckBox;
+    @BindView(R.id.form_search_warning_checkboxes) TextView mCheckboxesTextview;
+    @BindView(R.id.form_search_left_checkBox_arts) CheckBox artsCheckBox;
+    @BindView(R.id.form_search_left_checkBox_business) CheckBox businessCheckBox;
+    @BindView(R.id.form_search_left_checkBox_entrepreneurs) CheckBox entrepreneursCheckBox;
+    @BindView(R.id.form_search_right_checkBox_politics) CheckBox politicsCheckBox;
+    @BindView(R.id.form_search_right_checkBox_sports) CheckBox sportsCheckBox;
+    @BindView(R.id.form_search_right_checkBox_travel) CheckBox travelCheckBox;
 
     // Search button
-    @BindView(R.id.form_search_button)
-    Button searchButton;
+    @BindView(R.id.form_search_button) Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
